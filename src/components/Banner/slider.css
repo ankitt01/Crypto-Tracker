@@ -1,0 +1,11 @@
+.alice-carousel a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.alice-carousel li {
+    width: auto;
+}
+.heading {
+    font-size: calc(2.5em + 1vw);
+}

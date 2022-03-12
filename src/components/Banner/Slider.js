@@ -5,6 +5,7 @@ import {CryptoState} from '../../CryptoContext'
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { Link } from 'react-router-dom';
+import "./slider.css"
 
 
 function numberWithCommas(x) {
@@ -29,29 +30,28 @@ const Slider = () => {
   const items = trending.map((coin) => {
     let profit = coin.price_change_percentage_24h >= 0;
     return (
-      <Link to={`/coins/${coin.id}`}>
+      <Link to={`/coins/${coin.id}`} className="flex">
         <img src={coin?.image} alt={coin.name} className="h-20 mb-4" />
-        <span>
+        <span className='uppercase' >
           {coin?.symbol}
           &nbsp;
-          <span>{profit && "+" } {coin.price_change_percentage_24h?.toFixed(2)}%</span>
+          <span style={{color: profit > 0 ? "rgb(14,203,129)" : "red"}}>{profit && "+" }{coin.price_change_percentage_24h?.toFixed(2)}%</span>
         </span>
-        <span>{symbol}{numberWithCommas(coin?.current_price.toFixed(2))}</span>
+        <span className='text-xl'>{symbol}{numberWithCommas(coin?.current_price.toFixed(2))}</span>
       </Link>
     )
   })
   const responsive = {
-    0: { items: 1 },
-    568: { items: 2 },
-    1024: { items: 3 },
+    0: { items: 2 },
+    512: { items: 3 },
+    1024: {items: 4},
   };
   return (
     <div>
       <AliceCarousel 
-        mouseTracking
+        autoPlay
         responsive={responsive}
         items={items}
-        autoPlay
         animationDuration={1500}
         disableButtonsControls
         disableDotsControls
@@ -65,3 +65,4 @@ const Slider = () => {
 export default Slider
 
 
+// className='xl:w-3/5 lg:w-4/5 mx-auto'
