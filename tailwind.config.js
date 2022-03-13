@@ -7,6 +7,7 @@ module.exports = {
       },
       backgroundImage: {
         'banner': "url('./img/banner2.jpg')",
+        
       },
     },
   },
