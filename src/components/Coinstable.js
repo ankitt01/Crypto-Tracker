@@ -63,18 +63,18 @@ const Coinstable = () => {
 
                   return (
                     <tr className='border-b border-slate-600 text-left' onClick={() => history.push(`/coins/${row.id}`)} key={row.name}>
-                      <td className='flex'>
-                        <img className='h-8 lg:h-14 lg:m-4 m-1' src={row?.image} alt={row.name} />  
-                        <div className='flex flex-col justify-center align-start text-left'>
-                          <span className='text-xl lg:text-2xl uppercase'>{row.symbol}</span>
+                      <td className='flex p-2'>
+                        <img className='h-8 lg:h-14 lg:m-4 p-1' src={row?.image} alt={row.name} />  
+                        <div className='flex flex-col justify-center align-start text-left px-1'>
+                          <span className='text-l lg:text-2xl uppercase'>{row.symbol}</span>
                           <span className='text-xs text-gray-400'>{row.name}</span>
                         </div>
                       </td>
-                      <td className='truncate text-xs'>
+                      <td className='truncate text-xs pl-4'>
                         {symbol}{" "}
-                        {numberWithCommas(row.current_price.toFixed(2))}
+                        {numberWithCommas(row.current_price.toFixed(1))}
                       </td>  
-                      <td>
+                      <td className='pl-2'>
                         <span style={{color: profit > 0 ? "rgb(14,203,129)" : "red"}}>{profit && "+"}{row.price_change_percentage_24h.toFixed(2)}%</span>
                         
                       </td>
