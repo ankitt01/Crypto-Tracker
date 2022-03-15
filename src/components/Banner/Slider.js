@@ -12,8 +12,6 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
 }
 
-
-
 const Slider = () => {
   const [trending, setTrending] = useState([])
   const {currency,symbol} = CryptoState()
@@ -25,19 +23,17 @@ const Slider = () => {
   useEffect(() => {
     fetchTrendingCoins();
   }, [currency])
-  
-  console.log(trending)
   const items = trending.map((coin) => {
     let profit = coin.price_change_percentage_24h >= 0;
     return (
       <Link to={`/coins/${coin.id}`} className="flex">
-        <img src={coin?.image} alt={coin.name} className="h-20 mb-4" />
+        <img src={coin?.image} alt={coin.name} className="h-14 lg:h-20 mb-4" />
         <span className='uppercase' >
           {coin?.symbol}
           &nbsp;
           <span style={{color: profit > 0 ? "rgb(14,203,129)" : "red"}}>{profit && "+" }{coin.price_change_percentage_24h?.toFixed(2)}%</span>
         </span>
-        <span className='text-xl'>{symbol}{numberWithCommas(coin?.current_price.toFixed(2))}</span>
+        <span className='text-lg sm:text-xl'>{symbol}{numberWithCommas(coin?.current_price.toFixed(2))}</span>
       </Link>
     )
   })
@@ -65,4 +61,3 @@ const Slider = () => {
 export default Slider
 
 
-// className='xl:w-3/5 lg:w-4/5 mx-auto'

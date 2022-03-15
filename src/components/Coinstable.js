@@ -12,6 +12,8 @@ const Coinstable = () => {
     const history = useHistory()
     const {currency, symbol} = CryptoState()
     
+
+
     const fetchCoins = async () => {
       setLoading(true)
       const {data} = await axios.get(CoinList(currency));
@@ -34,7 +36,6 @@ const Coinstable = () => {
     function numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
     }
-    
   return (
     <div className='text-center text-gray-200 w-full lg:w-4/5 2xl:w-3/5 mx-auto lg:px-4'>
         <h2 className='lg:text-4xl text-2xl my-6'>Cryptocurrency Proces by Market Cap</h2>
@@ -58,7 +59,7 @@ const Coinstable = () => {
                 </tr>
               </thead>
               <tbody>
-                {handleSearch().slice((page-1)*10,(page-1)*10+10).map((row) => {
+                {handleSearch().map((row) => {
                   const profit = row.price_change_percentage_24h > 0;
 
                   return (
@@ -87,10 +88,10 @@ const Coinstable = () => {
                 })}
               </tbody>
             </table>
-
-          )
+          ) 
         }
-        
+        <div>
+        </div>
         </div>
 
     </div>
