@@ -8,7 +8,6 @@ const Coinstable = () => {
     const [coins, setCoins] = useState([])
     const [loading, setLoading] = useState(false)
     const [search, setSearch] = useState("")
-    const [page, setPage] = useState(1)
     const history = useHistory()
     const {currency, symbol} = CryptoState()
     
@@ -59,7 +58,7 @@ const Coinstable = () => {
                 </tr>
               </thead>
               <tbody>
-                {handleSearch().map((row) => {
+                {handleSearch().slice(0,15).map((row) => {
                   const profit = row.price_change_percentage_24h > 0;
 
                   return (

@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom/'
 import { SingleCoin} from "../config/api"
 import axios from 'axios'
 import CoinInfo from '../components/CoinInfo'
-import ReactHtmlParser from "react-html-parser"
+import ReactHtmlParser from 'react-html-parser';
+
 
 const CoinPage = () => {
   const {id} = useParams();
@@ -14,20 +15,29 @@ const CoinPage = () => {
     const {data} = await axios.get(SingleCoin(id));
     setCoin(data);
   }
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+  }
 
   useEffect(() => {
     fetchCoins();
   }, [])
+
+  if(!coin) return null
   
   return (
-    <div className='flex flex-col lg:flex-row text-center text-gray-300 my-4'>
-      <div className='w-full lg:w-1/3 flex flex-col align-center border-r-2 border-gray-500'>
-       <img src={coin?.image.large} alt={coin?.name} className='h-48 w-48 mx-auto mb-4' /> 
-       <h3 className='font-bold text-4xl mb-4'>{coin?.name}</h3>
-       <p className='w-full p-4 '>{ReactHtmlParser(coin?.description.en.split(". "[0]))}.</p>
-
+    <div className='flex flex-col lg:flex-row lg:text-center text-gray-300 my-4 p-6'>
+      <div className='w-full lg:w-1/3 flex flex-col align-center justify-center lg:border-r-2 border-gray-500 pr-2'>
+        <div className='max-w-[700px] mx-auto mb-6'>
+        <img src={coin?.image.large} alt={coin?.name} className='h-48 w-48 mx-auto mb-4' /> 
+        <h3 className='font-bold text-4xl mb-4'>{coin?.name}</h3>
+        <p className="max-w-[700px] mx-auto mb-6">{ReactHtmlParser(coin?.description.en.split(". ")[0])}</p>
+        <p className='text-xl font-bold mb-2'>Rank: {coin?.market_cap_rank}</p>
+        <p className='text-xl font-bold mb-2'>Current Price: {" "}{symbol}{" "}{numberWithCommas(coin?.market_data.current_price[currency.toLowerCase()])}</p>
+        <p className='text-xl font-bold mb-2'>Market Cap: {" "}{symbol}{" "}{numberWithCommas(coin?.market_data.market_cap[currency.toLowerCase()].toString().slice(0, -6))}M</p>
+        </div>
       </div>
-      <div>
+      <div className='p-4'>
         <CoinInfo coin={coin}/>
       </div>
     </div>
