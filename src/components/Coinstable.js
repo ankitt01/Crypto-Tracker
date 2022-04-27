@@ -23,6 +23,7 @@ const Coinstable = () => {
     
     useEffect(() => {
       fetchCoins()
+      // eslint-disable-next-line
     }, [currency])
 
     const handleSearch = () => {
