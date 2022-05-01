@@ -10,6 +10,7 @@
     "buffer": "^6.0.3",
     "chart.js": "^3.5.1",
     "chartjs": "^0.3.24",
+    "firebase": "^9.7.0",
     "react": "^17.0.2",
     "react-alice-carousel": "^2.5.1",
     "react-chartjs-2": "^3.0.4",
